@@ -10,31 +10,43 @@
 
     </data>
 
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    android:layout_height="wrap_content"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:src="@drawable/no_image"
+            app:civ_border_color="@color/purple_700"
+            app:civ_border_width="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintVertical_bias="0.49" />
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:maxLines="2"
             android:text="TextView"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_desc"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintHorizontal_bias="0.0"
@@ -51,23 +63,52 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_arrow_right" />
 
         <TextView
             android:id="@+id/tv_desc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
 
-            android:layout_marginBottom="8dp"
             android:maxLines="2"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_author"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            style="@style/TextAppearance.AppCompat.Caption"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
 </layout>

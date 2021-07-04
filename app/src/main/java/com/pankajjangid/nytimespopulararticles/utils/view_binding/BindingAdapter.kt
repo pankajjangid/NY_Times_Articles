@@ -23,6 +23,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.pankajjangid.nytimespopulararticles.R
+import com.pankajjangid.nytimespopulararticles.networking.WebServiceUrl
 import com.pankajjangid.nytimespopulararticles.utils.Logger
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -200,7 +201,7 @@ object BindingAdapter {
             url = if (!imageUrl.isNullOrEmpty() && imageUrl.startsWith("http")) {
                 imageUrl
             } else {
-                WebServiceUrl.BASE_URL_IMAGE + imageUrl
+                imageUrl
             }
 
 
@@ -249,7 +250,7 @@ object BindingAdapter {
         } else {
             Glide.with(view.context)
 
-                .load(R.drawable.ic_person).apply(RequestOptions())
+                .load(R.drawable.no_image).apply(RequestOptions())
                 .dontAnimate()
 
                 .into(view)
@@ -271,7 +272,7 @@ object BindingAdapter {
         url = if (imageUrl.startsWith("http")) {
             imageUrl
         } else {
-            WebServiceUrl.BASE_URL_IMAGE + imageUrl
+             imageUrl
         }
         Glide.with(view.context).asBitmap().apply(requestOptions).load(url)
             .thumbnail(0.1f)
@@ -311,7 +312,8 @@ object BindingAdapter {
             url = if (!imageUrl.isNullOrEmpty() && imageUrl.startsWith("http")) {
                 imageUrl
             } else {
-                WebServiceUrl.BASE_URL_IMAGE + imageUrl
+
+                imageUrl
             }
 
 
@@ -352,7 +354,7 @@ object BindingAdapter {
         } else {
               Glide.with(view.context)
 
-                  .load(R.drawable.ic_person).apply(RequestOptions())
+                  .load(R.drawable.no_image).apply(RequestOptions())
                   .dontAnimate()
 
                   .into(view)
@@ -382,13 +384,7 @@ object BindingAdapter {
     }
 
 
-    @JvmStatic
-    @BindingAdapter(value = ["onValueChangeListener"])
-    fun setOnValueChangeListener(slider: Slider, listener: OnValueChangeListener) {
-        slider.addOnChangeListener { _: Slider?, value: Float, _: Boolean ->
-            listener.onValueChanged(value)
-        }
-    }
+
 
     @JvmStatic
     @BindingAdapter(value = ["onCheckedChangeListener"])

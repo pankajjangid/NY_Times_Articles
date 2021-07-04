@@ -32,7 +32,7 @@ data class PopularArticleResponse(
         @SerializedName("id")
         val id: Long,
         @SerializedName("media")
-        val media: List<Media>,
+        val media: List<Media?>?,
         @SerializedName("nytdsection")
         val nytdsection: String,
         @SerializedName("org_facet")

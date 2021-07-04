@@ -12,6 +12,16 @@ abstract class BaseRVAdapter<T : Any, VB : ViewDataBinding>
 
     var items = mutableListOf<T>()
 
+    fun addSingleItem(item: T) {
+        this.items.add(item )
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(item: T) {
+        this.items.remove(item )
+        notifyDataSetChanged()
+    }
+
     fun addItems(items: List<T>) {
         this.items = items as MutableList<T>
         notifyDataSetChanged()

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.pankajjangid.nytimespopulararticles.R
 import com.pankajjangid.nytimespopulararticles.base.BaseActivity
 import com.pankajjangid.nytimespopulararticles.databinding.ActivityHomeBinding
+import com.pankajjangid.nytimespopulararticles.networking.response.PopularArticleResponse
 import com.pankajjangid.nytimespopulararticles.utils.Extensions.toast
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -17,14 +18,24 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), HomeListener,KodeinAwa
     private val factory: HomeViewModelFactory by instance()
     private lateinit var viewModel : HomeViewModel
 
+    private val adapter:HomeAdapter by lazy {
+        HomeAdapter()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(this,R.layout.activity_home)
 
         viewModel =  ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+        binding.viewModel = viewModel
         viewModel.listener=this
 
+
+        binding.rvArticle.adapter = adapter
+        binding.rvArticle.setHasFixedSize(true)
+
         loadPopularArticles()
+
     }
 
     override fun getToolbarInstance(): Toolbar? = null
@@ -40,6 +51,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), HomeListener,KodeinAwa
 
     override fun onSuccess(responseData: Any?) {
         hideProgress()
+
+        if (responseData is PopularArticleResponse){
+            adapter.addItems(responseData.results)
+        }
+
         Log.d("SUCCESS",".....")
     }
 
