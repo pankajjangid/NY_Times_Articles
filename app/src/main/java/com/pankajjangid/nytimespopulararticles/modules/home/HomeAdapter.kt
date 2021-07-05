@@ -9,6 +9,7 @@ import com.pankajjangid.nytimespopulararticles.utils.view_binding.BindingAdapter
 
 class HomeAdapter: BaseRVAdapter<PopularArticleResponse.Result, RowItemHomeBinding>() {
 
+    //set the layout
     override fun getLayout(): Int= R.layout.row_item_home
 
     override fun onBindViewHolder(
@@ -16,11 +17,15 @@ class HomeAdapter: BaseRVAdapter<PopularArticleResponse.Result, RowItemHomeBindi
         position: Int
     ) {
 
-
-
-        Logger.debug("ADAPTER POSTIONS : $position")
+        //bind item to view
         holder.binding.item = items[position]
 
+        //set listener
+        holder.binding.cvMain.setOnClickListener {
+            listener?.invoke(it,items[position],position)
+        }
+
+        //set values to view
         if (!items[position].media.isNullOrEmpty()){
             BindingAdapter.loadCardImage(holder.binding.imageView, items[position].media?.get(0)?.mediaMetadata?.get(0)?.url)
 

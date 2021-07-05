@@ -6,5 +6,4 @@ interface HomeListener {
     fun onLoading()
     fun onSuccess(responseData: Any?)
     fun onFailure(message: String)
-    fun onFailure()
 }
